@@ -13,6 +13,8 @@
 </head>
 <body>
   <div id="map"></div>
+  
+  <audio id="audio" src="C:\Users\Julia\Documents\IntakeForm\timesheets\geography_music"></audio>
 
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script>
@@ -23,8 +25,25 @@
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
       maxZoom: 18,
-    }).addTo(map);
+    }).addTo(map);+
+      
+    const polygonLayer = L.geoJSON(polygonData).addTo(map);
 
+    // Add event listener for polygon hover
+    polygonLayer.on('mouseover', function (e) {
+      // Play the music file when hovering over a polygon
+      const audio = document.getElementById('audio');
+      audio.play();
+    });
+
+    polygonLayer.on('mouseout', function (e) {
+      // Pause the music file when not hovering over a polygon
+      const audio = document.getElementById('audio');
+      audio.pause();
+      audio.currentTime = 0;
+    });
+    
+    
     // Add a marker to the map at a specific location
     const marker = L.marker([51.5, -0.09]).addTo(map);
 
