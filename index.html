@@ -13,8 +13,8 @@
 </head>
 <body>
   <div id="map"></div>
- <audio id="audio" src="C:\Users\Julia\Documents\IntakeForm\timesheets\geography_music"></audio>  
-  
+  <audio id="audio" src="https://github.com/juliagerdesDLC/geography_music/blob/main/piano-f_F%20_major_mp3.mp3"></audio>
+
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script>
     // Create a Leaflet map instance and set its center and zoom level
@@ -30,23 +30,22 @@
     fetch('pennsylvania.geojson')
       .then(response => response.json())
       .then(data => {
-        L.geoJSON(data).addTo(map);
-      });
-    
- // Add event listener for polygon hover
-    pennsylvania.on('mouseover', function (e) {
-      // Play the music file when hovering over a polygon
-      const audio = document.getElementById('audio');
-      audio.play();
-    });
+        const pennsylvaniaLayer = L.geoJSON(data).addTo(map);
 
-    pennsylvania.on('mouseout', function (e) {
-      // Pause the music file when not hovering over a polygon
-      const audio = document.getElementById('audio');
-      audio.pause();
-      audio.currentTime = 0;
-    });
-    
+        // Add event listener for polygon hover
+        pennsylvaniaLayer.on('mouseover', function (e) {
+          // Play the music file when hovering over a polygon
+          const audio = document.getElementById('audio');
+          audio.play();
+        });
+
+        pennsylvaniaLayer.on('mouseout', function (e) {
+          // Pause the music file when not hovering over a polygon
+          const audio = document.getElementById('audio');
+          audio.pause();
+          audio.currentTime = 0;
+        });
+      });
   </script>
 </body>
 </html>
