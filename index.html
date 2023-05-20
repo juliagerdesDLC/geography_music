@@ -13,7 +13,8 @@
 </head>
 <body>
   <div id="map"></div>
-
+ <audio id="audio" src="music.mp3"></audio>  
+  
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script>
     // Create a Leaflet map instance and set its center and zoom level
@@ -31,6 +32,9 @@
       .then(data => {
         L.geoJSON(data).addTo(map);
       });
+    
+
+    
   </script>
 </body>
 </html>
