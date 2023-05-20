@@ -13,7 +13,7 @@
 </head>
 <body>
   <div id="map"></div>
- <audio id="audio" src="music.mp3"></audio>  
+ <audio id="audio" src="C:\Users\Julia\Documents\IntakeForm\timesheets\geography_music"></audio>  
   
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script>
@@ -33,7 +33,19 @@
         L.geoJSON(data).addTo(map);
       });
     
+ // Add event listener for polygon hover
+    pennsylvania.on('mouseover', function (e) {
+      // Play the music file when hovering over a polygon
+      const audio = document.getElementById('audio');
+      audio.play();
+    });
 
+    pennsylvania.on('mouseout', function (e) {
+      // Pause the music file when not hovering over a polygon
+      const audio = document.getElementById('audio');
+      audio.pause();
+      audio.currentTime = 0;
+    });
     
   </script>
 </body>
