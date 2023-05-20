@@ -1,42 +1,54 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Map with Music</title>
+  <title>Basic Leaflet Web Map</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <style>
     #map {
       height: 400px;
-      width: 100%;
     }
   </style>
 </head>
 <body>
   <div id="map"></div>
+  
+  <audio id="audio" src="C:\Users\Julia\Documents\IntakeForm\timesheets\geography_music"></audio>
 
-  <audio id="audio" src="music.mp3"></audio>
-
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script>
-    // Add your map initialization code here
-    // This code assumes you are using a mapping library like Leaflet.js
+    // Create a Leaflet map instance and set its center and zoom level
+    const map = L.map('map').setView([51.505, -0.09], 13);
 
-    // Assuming you have a map object named 'map'
-    const map = L.map('map').setView([latitude, longitude], zoomLevel);
-
-    // Assuming you have a GeoJSON layer with polygons named 'polygonLayer'
+    // Add a tile layer to the map using a tile provider
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+      maxZoom: 18,
+    }).addTo(map);+
+      
     const polygonLayer = L.geoJSON(polygonData).addTo(map);
 
     // Add event listener for polygon hover
-    polygonLayer.on('mouseover', function (e) {
+   // polygonLayer.on('mouseover', function (e) {
       // Play the music file when hovering over a polygon
-      const audio = document.getElementById('audio');
-      audio.play();
-    });
+     // const audio = document.getElementById('audio');
+     // audio.play();
+    //});
 
-    polygonLayer.on('mouseout', function (e) {
+    //polygonLayer.on('mouseout', function (e) {
       // Pause the music file when not hovering over a polygon
-      const audio = document.getElementById('audio');
-      audio.pause();
-      audio.currentTime = 0;
-    });
+     // const audio = document.getElementById('audio');
+     // audio.pause();
+      // audio.currentTime = 0;
+    // });
+    
+    
+    // Add a marker to the map at a specific location
+    const marker = L.marker([51.5, -0.09]).addTo(map);
+
+    // Add a popup to the marker
+    marker.bindPopup('Hello, Leaflet!').openPopup();
   </script>
 </body>
 </html>
