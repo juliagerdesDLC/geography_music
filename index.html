@@ -30,18 +30,18 @@
     const polygonLayer = L.geoJSON(polygonData).addTo(map);
 
     // Add event listener for polygon hover
-    polygonLayer.on('mouseover', function (e) {
+   // polygonLayer.on('mouseover', function (e) {
       // Play the music file when hovering over a polygon
-      const audio = document.getElementById('audio');
-      audio.play();
-    });
+     // const audio = document.getElementById('audio');
+     // audio.play();
+    //});
 
-    polygonLayer.on('mouseout', function (e) {
+    //polygonLayer.on('mouseout', function (e) {
       // Pause the music file when not hovering over a polygon
-      const audio = document.getElementById('audio');
-      audio.pause();
-      audio.currentTime = 0;
-    });
+     // const audio = document.getElementById('audio');
+     // audio.pause();
+      // audio.currentTime = 0;
+    // });
     
     
     // Add a marker to the map at a specific location
