@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Map with Music</title>
+  <style>
+    #map {
+      height: 400px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+
+  <audio id="audio" src="music.mp3"></audio>
+
+  <script>
+    // Add your map initialization code here
+    // This code assumes you are using a mapping library like Leaflet.js
+
+    // Assuming you have a map object named 'map'
+    const map = L.map('map').setView([latitude, longitude], zoomLevel);
+
+    // Assuming you have a GeoJSON layer with polygons named 'polygonLayer'
+    const polygonLayer = L.geoJSON(polygonData).addTo(map);
+
+    // Add event listener for polygon hover
+    polygonLayer.on('mouseover', function (e) {
+      // Play the music file when hovering over a polygon
+      const audio = document.getElementById('audio');
+      audio.play();
+    });
+
+    polygonLayer.on('mouseout', function (e) {
+      // Pause the music file when not hovering over a polygon
+      const audio = document.getElementById('audio');
+      audio.pause();
+      audio.currentTime = 0;
+    });
+  </script>
+</body>
+</html>
