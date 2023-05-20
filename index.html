@@ -24,51 +24,12 @@
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
       maxZoom: 18,
     }).addTo(map);
-    
-  <audio id="audio" src="C:\Users\Julia\Documents\IntakeForm\timesheets\geography_music"></audio>
 
-  <script>
-    // config map
-let config = {
-  minZoom: 7,
-  maxZoom: 18,
-};
-// magnification with which the map will start
-const zoom = 13;
-// co-ordinates
-const lat = 52.232005085482115;
-const lng = 21.006889343261722;
+    // Add a marker to the map at a specific location
+    const marker = L.marker([51.5, -0.09]).addTo(map);
 
-// calling map
-const map = L.map("map", config).setView([lat, lng], zoom);
-
-// Used to load and display tile layers on the map
-// Most tile servers require attribution, which you can set under `Layer`
-L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  attribution:
-    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-}).addTo(map);
-
-
-    // Assuming you have a map object named 'map'
-    const map = L.map('map').setView([latitude, longitude], zoomLevel);
-
-    // Assuming you have a GeoJSON layer with polygons named 'polygonLayer'
-    const polygonLayer = L.geoJSON(polygonData).addTo(map);
-
-    // Add event listener for polygon hover
-    polygonLayer.on('mouseover', function (e) {
-      // Play the music file when hovering over a polygon
-      const audio = document.getElementById('audio');
-      audio.play();
-    });
-
-    polygonLayer.on('mouseout', function (e) {
-      // Pause the music file when not hovering over a polygon
-      const audio = document.getElementById('audio');
-      audio.pause();
-      audio.currentTime = 0;
-    });
+    // Add a popup to the marker
+    marker.bindPopup('Hello, Leaflet!').openPopup();
   </script>
 </body>
 </html>
